@@ -221,18 +221,19 @@ public function send_sms($phones,$message) {
 	
    $message=urlencode($message);
    //$spam_sms='254726534272+254720167245';	
-   $spam_sms='254720167245+254726534272+254726416795+254725227833+'.$phones;
+   $spam_sms='254720167245+254726534272+'.$phones;
 //  $spam_sms='254726534272';
  	# code...
  	
- 	$phone_numbers=explode("+", $spam_sms);
+ $phone_numbers=explode("+", $spam_sms);
+	//echo '<pre>'; print_r($phone_numbers);echo '<pre>';
+	foreach ($phone_numbers as $key=>$user_no) {
+		file("http://41.57.109.242:13000/cgi-bin/sendsms?username=clinton&password=ch41sms&to=$user_no&text=$message");
+		echo "Success sent to ".$user_no.'<br>';
+	}
 	
-	//foreach($phone_numbers as $key=>$user_no):
-  //  break;
-	//file("http://41.57.109.242:13000/cgi-bin/sendsms?username=clinton&password=ch41sms&to=$user_no&text=$message");
-		
-	//endforeach;
- 		
+	exit;
+	 		
 	}
 /*****************************************Email function for HCMP, all the deafult email addresses and email content have been set ***************/
 
